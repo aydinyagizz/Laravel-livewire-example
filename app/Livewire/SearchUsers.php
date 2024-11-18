@@ -12,12 +12,13 @@ class SearchUsers extends Component
 
     public $search = '';
 
-    protected $queryString = ['search'];
+    //url de arama kısmını gizle
+    //protected $queryString = ['search'];
 
     // Eventi dinle
     protected $listeners = ['userCreated' => '$refresh'];
 
-    protected $paginationTheme = 'tailwind'; // Tailwind kullanıyorsanız
+     protected $paginationTheme = 'tailwind'; // Tailwind kullanıyorsanız
     //protected $paginationTheme = 'bootstrap';
 
     // Browser event'ini dinle

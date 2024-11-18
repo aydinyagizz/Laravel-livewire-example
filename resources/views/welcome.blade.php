@@ -35,10 +35,10 @@
             <div class="flex justify-center">
 {{--                 @livewire('search-users')--}}
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         @livewire('create-user')
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         @livewire('search-users')
                     </div>
                 </div>
