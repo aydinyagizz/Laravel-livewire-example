@@ -50,6 +50,14 @@ class CreateUser extends Component
 
         // Başarı mesajı
         session()->flash('message', 'Kullanıcı başarıyla oluşturuldu!');
+
+        // Event yayınla aynı sayfada sayfa yenilenmden veriyi güncellemek için
+        $this->dispatch('userCreated');
+
+        // Browser Events kullanarak eventi yayınla
+        //bu da farklı sayfada sayfa yenilenmeden o veriyi o sayfaya gönderme işlemi
+        //yani kullnaıcı eklediğiinde anaysafada veriler otomatik listelenir
+        //$this->dispatch('user-created')->to('search-users');
     }
     public function render()
     {

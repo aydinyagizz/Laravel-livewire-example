@@ -4,15 +4,26 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class SearchUsers extends Component
 {
+    use WithPagination;
+
     public $search = '';
 
-   // protected $queryString = ['search'];
+    protected $queryString = ['search'];
 
-    public function updatedSearch()
+    // Eventi dinle
+    protected $listeners = ['userCreated' => '$refresh'];
+
+    protected $paginationTheme = 'tailwind'; // Tailwind kullanıyorsanız
+    //protected $paginationTheme = 'bootstrap';
+
+    // Browser event'ini dinle
+    public function userCreated()
     {
+        // Bu method event tetiklendiğinde çalışacak
         $this->render();
     }
 
@@ -22,7 +33,8 @@ class SearchUsers extends Component
             ->when($this->search, function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%');
             })
-            ->get();
+            ->latest()
+            ->paginate(5);
 
         return view('livewire.search-users', [
             'users' => $users
